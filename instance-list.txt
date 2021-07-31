@@ -1,0 +1,9 @@
+ID					IP			LABEL	OS			STATUS	RegionCPU	RAM	DISK	BANDWIDTH
+27135375-931d-453e-b37a-477eeee6e1f5	139.180.179.237		au-01	Ubuntu 18.04 x64	active	syd	11024	25	1000
+54d96996-b292-4805-bdb0-10f394a7f0ae	216.128.178.8		ca-01	Ubuntu 18.04 x64	active	yto	11024	25	1000
+c3155110-19e0-4f60-a20c-f8b5a6ca5b18	136.244.68.20		uk-01	Ubuntu 18.04 x64	active	lhr	11024	25	1000
+d6ecc676-a688-424b-9197-5ca04024ca9f	209.250.235.135		de-01	Ubuntu 18.04 x64	active	fra	11024	25	1000
+9b50c899-5fd9-4b94-bfe0-9d1d43e33d3b	199.247.10.99		fr-01	Ubuntu 18.04 x64	active	cdg	11024	25	1000
+======================================
+TOTAL	NEXT PAGE	PREV PAGE
+5
