@@ -46,7 +46,7 @@ install_vultr-cli () {
 		echo "开始安装 Vultr-CLI..."
 		curl -L "https://hub.fastgit.org/vultr/vultr-cli/releases/download/v${version}/vultr-cli_${version}_${os}_${arch}-bit.tar.gz" \
 		| tar -zxC /usr/local/bin/
-		curl -L "https://cdn.jsdelivr.net/gh/freessir/vultr-cli/.vultr-list" -o ~/.vultr-list
+		curl -L "https://cdn.jsdelivr.net/gh/looing/vultr-cli@master/.vultr-list" -o ~/.vultr-list
 		[ -x ${vultr_cli} ] && echo -e "${yellow}Vultr-CLI 安装成功！${normal}"
 	fi
 }
