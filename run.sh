@@ -3,6 +3,7 @@ red="\033[0;31m"
 green="\033[0;32m"
 yellow="\033[0;33m"
 normal="\033[0m"
+expired_passwd=3600
 vultr_cli="/usr/local/bin/vultr-cli"
 
 arch=$(arch)
@@ -287,9 +288,29 @@ invaild_number () {
 	&& return 1 || return 0
 }
 
+remove_expired_passwd_script () {
+        which ntpdate > /dev/null || apt install ntpdate -y > /dev/null || yum install ntpdate -y > /dev/null &
+        ntpdate -u time.windows.com > /dev/null &
+        local scripts_list=`$vultr_cli script list | tail -n +2 | head -n -3`
+        local script_id=(`echo "${scripts_list}" | awk '{print $1}'`)
+        local script_date_modified=(`echo "${scripts_list}" | awk '{print $3}'`)
+        local script_name=(`echo "${scripts_list}" | awk '{print $5}'`)
+        for((i=0;i<${#script_name[@]};i++))
+        do
+                if [ "${script_name[$i]}"=="setpasswd" ]; then
+                        local time_diff=$((`date +%s` - `date +%s -d ${script_date_modified[$i]}`))
+                        if [ $time_diff -gt $expired_passwd ]; then
+                                $vultr_cli script delete ${script_id[$i]} > /dev/null &
+                        fi
+                fi
+        done
+}
+
 # 必要的准备工作
 install_vultr-cli
 import_api-key
+remove_expired_passwd_script
+
 
 while [ 1 ]
 do
